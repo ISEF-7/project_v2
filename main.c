@@ -22,11 +22,11 @@
  */
 
 
-#include <iostream>
-using namespace std;
+#include <stdio.h>
 
-int main()
-{
-   cout << "Hello you" << endl;
+int main() {
+   /* my first program in C */
+   printf("Hello, World! \n");
+   
    return 0;
 }
