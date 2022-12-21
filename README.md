@@ -6,7 +6,6 @@ Plan:
 - Setup Multicore
 - Required Materials
   - 1 Raspberry Pi Pico 4 model b 2 gb
-  - 1 AdaFruit HAT
   - 1 AdaFruit Stepper/DC Motor HAT
   - 1 5V DC motor
   - 10 Stackable Headers
