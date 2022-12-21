@@ -23,10 +23,10 @@
 
 
 #include <iostream>
+using namespace std;
 
-int main(int argc, char **argv)
+int main()
 {
-	
-	return 0;
+   cout << "Hello you" << endl;
+   return 0;
 }
-
