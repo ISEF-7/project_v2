@@ -1,7 +1,9 @@
 #include <Arduino.h>
+#include <iostream>
+
 
 void setup() {
-  // put your setup code here, to run once:
+  std::cout << "Booting "
 }
 
 void loop() {
