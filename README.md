@@ -7,7 +7,7 @@ Plan:
 - Required Materials
   - 1 Arduino Uno Rev3
   - 2 Servo Motors
-  - 1 LiDAR 
+  - 1 RPLiDAR 
   - 1 mendable aluminum plate
   - 2 cuttable steel rods
   - 10 wires 
