@@ -10,14 +10,14 @@
             "includePath": [
                 "/Users/edwardkim/Desktop/GitHub/project_v2/include",
                 "/Users/edwardkim/Desktop/GitHub/project_v2/src",
-                "/Users/edwardkim/Desktop/GitHub/project_v2/.pio/libdeps/uno/Arduino_Threads/src",
                 "/Users/edwardkim/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/Users/edwardkim/.platformio/packages/framework-arduino-avr/variants/standard",
-                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "/Users/edwardkim/Desktop/GitHub/project_v2/.pio/libdeps/uno/Arduino_Threads/src",
                 "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                 "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
             "browse": {
@@ -25,14 +25,14 @@
                 "path": [
                     "/Users/edwardkim/Desktop/GitHub/project_v2/include",
                     "/Users/edwardkim/Desktop/GitHub/project_v2/src",
-                    "/Users/edwardkim/Desktop/GitHub/project_v2/.pio/libdeps/uno/Arduino_Threads/src",
                     "/Users/edwardkim/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/Users/edwardkim/.platformio/packages/framework-arduino-avr/variants/standard",
-                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "/Users/edwardkim/Desktop/GitHub/project_v2/.pio/libdeps/uno/Arduino_Threads/src",
                     "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                     "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]
             },
