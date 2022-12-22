@@ -12,4 +12,4 @@ Plan:
   - 2 cuttable steel rods
   - 10 wires 
   - 4 rubber wheels 
-  - gears 
+  - 28(1),12(2), 20(1) gears 
