@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <ArduinoSTL.h> //https://registry.platformio.org/libraries/mike-matera/ArduinoSTL 
 #include <ArduinoJson.h> //https://registry.platformio.org/libraries/bblanchon/ArduinoJson 
-#include <lc-addrlabels.h> //https://registry.platformio.org/libraries/gitlab-airbornemint/Protothreads 
+#include "protothreads.h" //https://registry.platformio.org/libraries/gitlab-airbornemint/Protothreads 
 #include <RPLidar.h> //https://github.com/robopeak/rplidar_arduino
 #include <Servo.h> //https://registry.platformio.org/libraries/arduino-libraries/Servo
 
@@ -11,26 +11,33 @@ using namespace std;
 
 class hub{
   public:
-  
+
 };
 
 class RoadData{
   public:
-  vector<vector<float>> roadData_ADJMTX{};
+    vector<vector<float>> roadData_ADJMTX{};
 
 };
 
 class sn_instrc{
   public:
-  int instruction_id;
-  vector<string> instruction;
+    int instruction_id;
+    vector<string> instruction;
 };
 
 class intrp_instrc{
   public:
-  int intp_id;
-  vector<string> instruction;
+    int intp_id;
+    vector<string> instruction;
 };
+
+class location{
+  public:
+    string name;
+    int node_position;
+};
+
 
 class node : location{
   public:
@@ -39,18 +46,13 @@ class node : location{
 
 class road{
   public:
-    float length;
     vector<node> body;
+    float length;
     vector<int> lanes;
     float speedLimit; 
 };
 
 
-class location{
-  public:
-    string name;
-    int node_position;
-};
 
 struct roadData{
   vector<vector<float>> adjmtx_data;
@@ -93,7 +95,8 @@ string lidar_moduleCheck(RPLidar lidar){
   return "ERR";
 }; 
 string hub_moduleCheck(hub h){
-}; //TODO 
+  
+};
 
 ///////
 
