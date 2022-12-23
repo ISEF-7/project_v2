@@ -11,7 +11,10 @@ using namespace std;
 
 class hub{
   public:
-
+    //port references for devices
+    const int port_l;
+    const int port_m1;
+    const int port_m2;
 };
 
 class RoadData{
@@ -74,6 +77,10 @@ struct roadData{
 
 ///////
 
+bool reachedDestination;
+short completePercent;
+bool status;
+
 RPLidar l;
 RPLidar* L = &l;
 Servo m1;
@@ -85,26 +92,25 @@ hub* HUB = &Hub;
 
 ///////
 
-string servo_moduleCheck(Servo servo){
+void servo_moduleCheck(Servo servo){
   //XXX test if comparing objects by runtime memory address works, alternative is to do nested classes, and the base class has the name
   if (&servo == &m1){
-    if (m1.attached() == true){return "OK"; }
-    else{return "ERR";}
+    if (m1.attached() == true){cout << "Servo m1: OK";}
+    else{throw "Servo m1: ERR";}
   }
   if (&servo == &m2){
-    if (m2.attached() == true){return "OK";}
-    else{return "ERR";}
-  }
-  return "NULL";
+    if (m2.attached() == true){cout << "Servo m2:" "OK";}
+    else{throw "Servo m2:" "ERR";}
 }
-string lidar_moduleCheck(RPLidar lidar){
+
+}
+void lidar_moduleCheck(RPLidar lidar){
   rplidar_response_device_info_t info;
-  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true && IS_OK(lidar.waitPoint()) == true){
-    return "OK";
-  }
-  return "ERR";
+  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true && IS_OK(lidar.waitPoint()) == true){cout<< "RPLidar l: OK";} //XXX check lidar variables
+  throw "RPLidar l: ERR";
 }; 
-string hub_moduleCheck(hub h){
+
+void hub_moduleCheck(hub h){
   
 };
 
@@ -119,7 +125,6 @@ void boot_servo(vector<Servo> servolist){
 void boot_lidar(RPLidar lidar){
   cout << "Booting RPLidar...";
   lidar_moduleCheck(lidar);
-
   //TODO object configuration
 }
 void boot_hub(hub h){
