@@ -20,17 +20,27 @@ class RoadData{
 
 };
 
-class sn_instrc{
-  public:
-    int instruction_id;
-    vector<string> instruction;
-};
+//main protothread
+pt ptMain;
+int MainThread(struct pt* pt){
+    PT_BEGIN(pt);
 
-class intrp_instrc{
-  public:
-    int intp_id;
-    vector<string> instruction;
-};
+    for(;;){
+      //TODO main thread execution
+    }
+    PT_END(pt);
+}
+
+//thread for interupting main thread and executing SLAM protocol
+pt ptSLAM;
+int SLAMThread(struct pt* pt){
+  PT_BEGIN(pt);
+
+    for(;;){
+      //TODO main thread execution
+    }
+  PT_END(pt);
+}
 
 class location{
   public:
