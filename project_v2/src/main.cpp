@@ -143,7 +143,7 @@ void boot_lidar(RPLidar lidar){
 void boot_hub(hub h){
   cout << "Booting hub...";
   hub_moduleCheck(h);
-
+  
   //TODO object configuration
 }
 
