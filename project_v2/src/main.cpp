@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <ArduinoSTL.h> //https://registry.platformio.org/libraries/mike-matera/ArduinoSTL 
 #include <ArduinoJson.h> //https://registry.platformio.org/libraries/bblanchon/ArduinoJson 
-#include <lc-addrlabels.h> //https://registry.platformio.org/libraries/gitlab-airbornemint/Protothreads 
+#include "protothreads.h" //https://registry.platformio.org/libraries/gitlab-airbornemint/Protothreads //XXX try using https://registry.platformio.org/libraries/ivanseidel/Thread library instead
 #include <RPLidar.h> //https://github.com/robopeak/rplidar_arduino
 #include <Servo.h> //https://registry.platformio.org/libraries/arduino-libraries/Servo
 
@@ -11,39 +11,39 @@ using namespace std;
 
 class hub{
   public:
-  
+    //port references for devices
+    //const int port_l = ; //TODO set the values
+    //const int port_m1 = ;
+    //const int port_m2 = ;
 };
 
 class RoadData{
   public:
-  vector<vector<float>> roadData_ADJMTX{};
+    vector<vector<float>> roadData_ADJMTX{};
 
 };
 
-class sn_instrc{
-  public:
-  int instruction_id;
-  vector<string> instruction;
-};
+//main protothread
+pt ptMain;
+int MainThread(struct pt* pt){
+    PT_BEGIN(pt);
 
-class intrp_instrc{
-  public:
-  int intp_id;
-  vector<string> instruction;
-};
+    for(;;){
+      //TODO main thread execution
+    }
+    PT_END(pt);
+}
 
-class node : location{
-  public:
+//thread for interupting main thread and executing SLAM protocol
+pt ptSLAM;
+int SLAMThread(struct pt* pt){
+  PT_BEGIN(pt);
 
-};
-
-class road{
-  public:
-    float length;
-    vector<node> body;
-    vector<int> lanes;
-    float speedLimit; 
-};
+    for(;;){
+      //TODO main thread execution
+    }
+  PT_END(pt);
+}
 
 
 class location{
@@ -52,15 +52,33 @@ class location{
     int node_position;
 };
 
+
+class node : location{
+  public:
+
+};
+
+class road{
+  public:
+    vector<node> body;
+    float length;
+    vector<int> lanes;
+    float speedLimit; 
+};
+
+
+
 struct roadData{
   vector<vector<float>> adjmtx_data;
   location i_location;
   location destination;
 };
 
-
-
 ///////
+
+bool reachedDestination;
+short completePercent;
+bool status;
 
 RPLidar l;
 RPLidar* L = &l;
@@ -72,33 +90,47 @@ hub Hub;
 hub* HUB = &Hub;
 
 ///////
+void shutdown(){} //TODO shutdown function
 
-string servo_moduleCheck(Servo servo){
+void servo_moduleCheck(Servo servo){
   //XXX test if comparing objects by runtime memory address works, alternative is to do nested classes, and the base class has the name
   if (&servo == &m1){
-    if (m1.attached() == true){return "OK"; }
-    else{return "ERR";}
+    if (m1.attached() == true){
+      cout << "Servo m1: OK";
+    }
+    else{
+      cout << "Servo m1: ERR";
+      shutdown();
+    }
   }
   if (&servo == &m2){
-    if (m2.attached() == true){return "OK";}
-    else{return "ERR";}
+    if (m2.attached() == true){
+      cout << "Servo m2:" "OK";
+    }
+    else{
+       cout << "Servo m2:" "ERR";
+       shutdown();
+    }
   }
-  return "NULL";
 }
-string lidar_moduleCheck(RPLidar lidar){
+
+void lidar_moduleCheck(RPLidar lidar){
   rplidar_response_device_info_t info;
-  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true && IS_OK(lidar.waitPoint()) == true){
-    return "OK";
+  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true && IS_OK(lidar.waitPoint()) == true){cout<< "RPLidar l: OK";} //XXX check lidar variables
+  else{
+    cout << "RPLidar l: ERR"; 
+    shutdown();
   }
-  return "ERR";
-}; 
-string hub_moduleCheck(hub h){
-}; //TODO 
+}
+
+void hub_moduleCheck(hub h){
+  
+}
 
 ///////
 
 void boot_servo(vector<Servo> servolist){
-  for (int i=0; i<servolist.size(); i++){
+  for (int i=0; (unsigned)i<servolist.size(); i++){
     cout << "Booting Servo m" << i << " ...";
     servo_moduleCheck(servolist.at(i));
   };
@@ -106,13 +138,12 @@ void boot_servo(vector<Servo> servolist){
 void boot_lidar(RPLidar lidar){
   cout << "Booting RPLidar...";
   lidar_moduleCheck(lidar);
-
   //TODO object configuration
 }
 void boot_hub(hub h){
   cout << "Booting hub...";
   hub_moduleCheck(h);
-
+  
   //TODO object configuration
 }
 
@@ -124,6 +155,7 @@ void boot_hub(hub h){
 ///////
 
 void setup() {
+  cout << "SETUP ///////";
   cout << "Booting";
   boot_hub(Hub);
   boot_lidar(l);
