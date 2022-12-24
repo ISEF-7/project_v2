@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <ArduinoSTL.h> //https://registry.platformio.org/libraries/mike-matera/ArduinoSTL 
 #include <ArduinoJson.h> //https://registry.platformio.org/libraries/bblanchon/ArduinoJson 
-#include "protothreads.h" //https://registry.platformio.org/libraries/gitlab-airbornemint/Protothreads //XXX try using https://registry.platformio.org/libraries/ivanseidel/Thread library instead
+#include <StaticThreadController.h> //https://registry.platformio.org/libraries/ivanseidel/Thread //XXX look more into Ivan Seidel 
 #include <RPLidar.h> //https://github.com/robopeak/rplidar_arduino
 #include <Servo.h> //https://registry.platformio.org/libraries/arduino-libraries/Servo
 
@@ -23,6 +23,7 @@ class RoadData{
 
 };
 
+/*
 //main protothread
 pt ptMain;
 int MainThread(struct pt* pt){
@@ -33,8 +34,10 @@ int MainThread(struct pt* pt){
     }
     PT_END(pt);
 }
+*/
 
 //thread for interupting main thread and executing SLAM protocol
+/*
 pt ptSLAM;
 int SLAMThread(struct pt* pt){
   PT_BEGIN(pt);
@@ -44,7 +47,7 @@ int SLAMThread(struct pt* pt){
     }
   PT_END(pt);
 }
-
+*/
 
 class location{
   public:
